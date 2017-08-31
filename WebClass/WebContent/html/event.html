@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+	.bgYellow { background-color: yellow }
+	.bgBlue { background-color: blue }
+	.bgWhite { backgroudn-color: white }
+	.border { border: 3px solid red; margin: 0px }
+	.noBorder { border: 0px solid black; margin: 3px }
+</style>
+<script>
+function refreshColor(color){
+	var form = document.getElementById("typeForm");
+	form.setAttribute("class", color);
+}
+function refreshTextIn(text){
+	text.setAttribute("class", "border");
+}
+function refreshTextOut(text){
+	text.setAttribute("class", "noBorder");
+	//text.removeAttribute("class", "")
+}
+function refreshTyping(){
+	var typeText = document.getElementById("typeText");
+	typeText.value = typeText.value.toUpperCase();
+}
+</script>
+</head>
+<body onload="alert('The Web page has been loaded.')">
+<div id="typeForm">
+<input type="radio" name="color" onclick="refreshColor('bgYellow')">Yellow
+<input type="radio" name="color" onclick="refreshColor('bgBlue')">Blue
+<input type="radio" name="color" onclick="refreshColor('bgWhite')">Default
+<br>
+<input type="text" id="typeText" onchange="refreshTyping()">
+<div id="refreshText" class="noBorder" onmouseover="refreshTextIn(this)" onmouseout="refreshTextOut(this)">Mouse On</div>
+</div>
+</body>
+</html>

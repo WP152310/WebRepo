@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script>
+function getId(id){
+	return document.getElementById(id);
+}
+function add(){
+	var a = getId("num0").value;
+	var b = getId("num1").value;
+	getId("result").value = Number(a) + parseInt(b);
+}
+</script>
+<body>
+<input type="text" id="num0" size="5"/> +
+<input type="text" id="num1" size="5"/> =
+<input type="text" id="result" size="5"/>
+<input type="button" onclick="add()" value="calculate"/>
+</body>
+</html>
