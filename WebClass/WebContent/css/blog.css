@@ -1,0 +1,65 @@
+.container {
+  		padding-top: 25px;
+  		padding-bottom: 25px;
+  	}
+  	.transparent-input{
+     		background-color:rgba(0,0,0,0);
+     		border:	none;
+     		color: rgba(20, 20, 20, 256);
+  	}
+  	body, html {
+  		height: 100%;
+}
+#main{
+	background: url('../image/main.png');
+	height: 100%;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+.display-inline {
+	display: inline-block;
+}
+.display-not-inline {
+	display: block;
+}
+.card {
+	display: inline-block;
+}
+.card-img-top {
+	height: 190px;
+	width: auto;
+}
+.main-button-div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -120px 0 0 -400px;
+}
+.main-button-div-not-inline {
+	margin: -200px 0 0 -50px;
+}
+.main-button{
+	text-align: center;
+	font-size: 200%;
+	width: 100%;
+}
+.main-button-not-inline{
+	text-align: center;
+	font-size: 100%;
+	width: 50%;
+}
+body {
+  		/*overflow:hidden;*/
+}
+.main-text {
+	font-family: 'Calibri';
+}
+.main-sign:hover, .main-sign:visited, .main-sign:link, .main-sign:active{
+	font-family: 'Calibri';
+	display: inline;
+	color: white;
+  		text-decoration: none;
+}
