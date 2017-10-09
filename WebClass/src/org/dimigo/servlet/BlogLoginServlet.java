@@ -19,14 +19,14 @@ import com.google.gson.JsonPrimitive;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet(description = "??? ???", urlPatterns = { "/signup" })
-public class SignupServlet extends HttpServlet {
+@WebServlet(description = "??? ???", urlPatterns = { "/bloglogin" })
+public class BlogLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SignupServlet() {
+    public BlogLoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +37,7 @@ public class SignupServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		RequestDispatcher rd = request.getRequestDispatcher("jsp/signup.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("myblog/index.jsp");
 		rd.forward(request, response);
 	}
 
@@ -48,31 +48,32 @@ public class SignupServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		String pwd = request.getParameter("pwd");
-		String name = request.getParameter("name");
-		String nick = request.getParameter("nick");
+		System.out.printf("id : %s, pwd: %s\n", id, pwd);
 		
-		System.out.printf("id : %s, pwd: %s, name: %s, nick: %s\n", id, pwd, name, nick);
+		response.setContentType("application/json");
+		PrintWriter out = response.getWriter();
+		JsonObject json = new JsonObject();
 		
-		boolean result = false;
+		
+		boolean result = id.equals("test@naver.com");
+		// 세션에 사용자 정보를 생성
+		HttpSession session = request.getSession();
 		if(result){
-			response.setContentType("application/json");
-			PrintWriter out = response.getWriter();
-			
-			JsonObject json = new JsonObject();
-			json.addProperty("id", id);
-			out.write(json.toString());
-			System.out.println(json.toString());
-			out.close();
+			UserVO user = new UserVO();
+			user.setId(id);
+			user.setName("Freiyer");
+			user.setNickname("SolMarta");
+			session.setAttribute("user", user);
+			json.addProperty("name", user.getName());
 		}
-		else{
-			response.setContentType("application/json");
-			JsonObject json = new JsonObject();
-			json.addProperty("failed", "failed");
-			PrintWriter out = response.getWriter();
-			out.write(json.toString());
-			System.out.println(json.toString());
-			out.close();
+		else {
+			request.setAttribute("msg", "error");
+			json.addProperty("msg", "error");
 		}
+		
+		System.out.println(json.toString());
+		out.write(json.toString());
+		out.close();
 	}
 	
 	protected void doPost2(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -83,24 +84,7 @@ public class SignupServlet extends HttpServlet {
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		
-		/*
-		 * {
-		 * 		"id": testid
-		 * }
-		 */
-		
-		
-//		out.println("{");
-//		out.println("\"id\":\"" + id + '\"');
-//		out.println("}");
-		
-		// JSON Simple Library
-//		JSONObject json = new JSONObject();
-//		json.put("id", id);
-//		out.write(json.toJSONString());
-		
 		JsonObject json = new JsonObject();
-		//json.add("id", new JsonPrimitive(id));
 		json.addProperty("id", id);
 		out.write(json.toString());
 		

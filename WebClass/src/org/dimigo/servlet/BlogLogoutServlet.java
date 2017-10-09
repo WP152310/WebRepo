@@ -13,14 +13,14 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LogoutServlet
  */
-@WebServlet(description = "??? ???", urlPatterns = { "/logout" })
-public class LogoutServlet extends HttpServlet {
+@WebServlet(description = "??? ???", urlPatterns = { "/bloglogout" })
+public class BlogLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public BlogLogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class LogoutServlet extends HttpServlet {
 		session.invalidate();
 		//RequestDispatcher rd = request.getRequestDispatcher("jsp/home.jsp");
 		//rd.forward(request, response);
-		response.sendRedirect("myblog/blog.jsp");
+		response.sendRedirect("myblog/html/index.jsp");
 	}
 
 }

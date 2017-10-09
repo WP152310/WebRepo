@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="org.dimigo.vo.UserVO" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,8 +19,21 @@
 <div id="main">
 <div style="height: 16%">
 	<div class="container text-right">
+	<%
+		if(session.getAttribute("user")==null){
+	%>
      <a class="main-sign" onclick="$('#registerModal').modal()" href="#">Sign Up</a>
      <a class="main-sign" onclick="$('#signinModal').modal()" href="#">Sign In</a>
+    <%
+		} else {
+    %>
+     <form method="post" action="/WebClass/bloglogout">
+     	<a class="main-sign" href="#"><%=((UserVO)session.getAttribute("user")).getName()%></a>
+        <a class="main-sign" href="#" onclick="parentNode.submit()">Sign Out</a>
+     </form>
+    <%
+		}
+    %>
     </div>
 </div>
 <div style="height: 16%; text-align: center;"><h1 style="font-size: 500%;" id="main-title" class="main-text">Freiyer</h1></div>
@@ -79,12 +95,29 @@
    <div class="navbar-brand d-flex mx-auto">Freiyer</div>
    <div class="navbar-collapse collapse dual-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-  	  <li class="nav-item" onmouseover="menu_over(this)" onmouseout="menu_out(this)">
+      <%
+		if(session.getAttribute("user")==null){
+	%>
+     <li class="nav-item" onmouseover="menu_over(this)" onmouseout="menu_out(this)">
         <a class="nav-link" onclick="$('#registerModal').modal()" href="#">Sign Up</a>
       </li>
       <li class="nav-item" onmouseover="menu_over(this)" onmouseout="menu_out(this)">
         <a class="nav-link" onclick="$('#signinModal').modal()" href="#">Sign In</a>
       </li>
+    <%
+		} else {
+    %>
+    <li class="nav-item" onmouseover="menu_over(this)" onmouseout="menu_out(this)">
+        <a class="nav-link" href="#"><%=((UserVO)session.getAttribute("user")).getName()%></a>
+      </li>
+      <li class="nav-item" onmouseover="menu_over(this)" onmouseout="menu_out(this)">
+      	<form method="post" action="/WebClass/bloglogout">
+        	<a class="nav-link" href="#" onclick="parentNode.submit()">Sign Out</a>
+        </form>
+      </li>
+    <%
+		}
+    %>
     </ul>
    </div>
 </nav>
@@ -102,7 +135,7 @@
       <div class="modal-body">
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary resultModalCloseBtn" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -214,19 +247,19 @@ Hobbies
 </div>
 <h2>3d Modeling</h2>
 <div class="card">
-  <img class="card-img-top" src="http://area.autodesk.com/userdata/avatar/5715231436b67.jpg" alt="Card image cap">
+  <!--<img class="card-img-top" src="http://area.autodesk.com/userdata/avatar/5715231436b67.jpg" alt="Card image cap"> -->
   <div class="card-body">
     <p class="card-text">3ds Max</p>
   </div>
 </div>
 <div class="card">
-  <img class="card-img-top" src="http://area.autodesk.com/area_v2/assets/img/product/autodesk-maya.png" alt="Card image cap">
+  <!--<img class="card-img-top" src="http://area.autodesk.com/area_v2/assets/img/product/autodesk-maya.png" alt="Card image cap"> -->
   <div class="card-body">
     <p class="card-text">Maya</p>
   </div>
 </div>
 <div class="card">
-  <img class="card-img-top" src="http://area.autodesk.com/area_v2/assets/img/product/autodesk-mudbox.png" alt="Card image cap">
+  <!--<img class="card-img-top" src="http://area.autodesk.com/area_v2/assets/img/product/autodesk-mudbox.png" alt="Card image cap"> -->
   <div class="card-body">
     <p class="card-text">Mudbox</p>
   </div>

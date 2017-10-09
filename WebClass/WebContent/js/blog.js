@@ -83,15 +83,30 @@ $(document).ready(
 	    		//document.getElementById("id").value
 	    		var id = $('#id').val();
 	    		var pwd = $('#pwd').val();
-	    		console.log(id, pwd);
 	    		
 	    		//서버로 POST 방식으로 전송
-	    		$.post("/WebClass/login", { id: id, pwd: pwd },
+	    		$.post("/WebClass/bloglogin", { id: id, pwd: pwd },
 	    			function(data) {
-	    				var resultModal = $('#resultModal')
-	    				resultModal.modal();
-	    				resultModal.find('.modal-body').text(data.id + '님 로그인되었습니다.');
-	    				$('#signinModal').modal('hide');
+	    				if(data.msg == 'error') {
+	    					$('#signinModal').modal('hide');
+	    					var resultModal = $('#resultModal')
+		    				resultModal.modal();
+	    					resultModal.find('.modal-body').text('Sign-In failed.');
+	    					//resultModal.find('.resultModalCloseBtn').attr('onclick', '');
+	    					$('#resultModal').on('hide.bs.modal', function () {
+	    						$("#signinModal").modal();
+	    					})
+	    				}
+	    				else {
+	    					$('#signinModal').modal('hide');
+	    					var resultModal = $('#resultModal')
+		    				resultModal.modal();
+	    					console.log(data);
+	    					resultModal.find('.modal-body').text('Welcome, ' + data.name + '.');
+	    					$('#resultModal').on('hide.bs.modal', function () {
+	    						location.reload();
+	    					})
+	    				}
 	    			}
 	    		);
 			}
@@ -109,7 +124,7 @@ $(document).ready(
 					function(data) {
 						console.log("received")
 						var resultModal = $('#resultModal')
-						resultModal.find('.modal-body').text(data.name + '님 회원가입 되었습니다.');
+						resultModal.find('.modal-body').text('Welcome, ' + data.name + '!');
 						resultModal.modal();
 						$('#registerModal').modal('hide');
 					}

@@ -51,18 +51,21 @@ public class LoginServlet extends HttpServlet {
 		System.out.printf("id : %s, pwd: %s\n", id, pwd);
 		
 		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
 		
+		
+		PrintWriter out = response.getWriter();
 		JsonObject json = new JsonObject();
 		json.addProperty("id", id);
 		out.write(json.toString());
+
+		
 		
 		System.out.println(json.toString());
 		
-		boolean result = id.equals("hello@naver.com");
+		boolean result = id.equals("test@naver.com");
+		// 세션에 사용자 정보를 생성
+		HttpSession session = request.getSession();
 		if(result){
-			// 세션에 사용자 정보를 생성
-			HttpSession session = request.getSession();
 			
 			UserVO user = new UserVO();
 			user.setId(id);
@@ -75,6 +78,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			request.setAttribute("msg", "error");
+			request.setAttribute("tmpId", id);
+			request.setAttribute("tmpPw", pwd);
 			RequestDispatcher rd = request.getRequestDispatcher("jsp/login.jsp");
 			rd.forward(request, response);
 		}

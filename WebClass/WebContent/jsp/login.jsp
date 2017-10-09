@@ -21,10 +21,22 @@
 
 			<label for="inputEmail" class="sr-only">Email address</label> <input
 				type="email" name="id" id="inputEmail" class="form-control"
-				placeholder="Email address" required autofocus> <label
+				placeholder="Email address" required autofocus
+				value="<%
+				if(request.getAttribute("tmpId")!=null){
+					out.print(request.getAttribute("tmpId"));
+				}
+				%>"
+				> <label
 				for="inputPassword" class="sr-only">Password</label> <input
 				type="password" name="pwd" id="inputPassword" class="form-control"
-				placeholder="Password" required>
+				placeholder="Password" required
+				value="<%
+				if(request.getAttribute("tmpPw")!=null){
+					out.print(request.getAttribute("tmpPw"));
+				}
+				%>"
+				>
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Sign
 				in</button>
@@ -45,7 +57,7 @@
 		crossorigin="anonymous"></script>
 
 	<script>
-	<% 
+	<%
 		if("error".equals(request.getAttribute("msg"))) {
 	%>
 		console.log("ERROR");//가방

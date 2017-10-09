@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SessionServlet
+ * Servlet implementation class SessionServlet6
  */
 @WebServlet(description = "??? ???", urlPatterns = { "/session" })
 public class SessionServlet extends HttpServlet {
